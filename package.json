@@ -1,25 +1,12 @@
 {
-  "private": true,
   "name": "r-stream",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
+  "private": true,
+  "version": "0.0.0",
   "scripts": {
-    "prepare": "husky install",
-    "preinstall": "npx only-allow pnpm"
-  },
-  "devDependencies": {
-    "doctoc": "^2.2.1",
-    "husky": "^9.1.6",
-    "typescript": "<=5.8.3"
-  },
-  "engines": {
-    "npm": "use pnpm!",
-    "yarn": "use pnpm!",
-    "pnpm": ">=10.10.0",
-    "node": ">=22.13.0"
-  },
-  "overrides": {
-    "typescript": "^5.8.3"
+    "dev": "pnpm -r dev",
+    "build": "pnpm -r build",
+    "preview": "pnpm -r preview",
+    "lint": "pnpm -r lint",
+    "format": "pnpm -r format"
   }
-}
+} 
