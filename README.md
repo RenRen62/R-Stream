@@ -18,6 +18,7 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
+
 - [リポジトリ構成](#%E3%83%AA%E3%83%9D%E3%82%B8%E3%83%88%E3%83%AA%E6%A7%8B%E6%88%90)
   - [@r-stream/web](#r-streamweb)
   - [@r-stream/server](#r-streamserver)
@@ -33,6 +34,8 @@
   - [ディレクトリ構造](#%E3%83%87%E3%82%A3%E3%83%AC%E3%82%AF%E3%83%88%E3%83%AA%E6%A7%8B%E9%80%A0)
   - [命名規則](#%E5%91%BD%E5%90%8D%E8%A6%8F%E5%89%87)
   - [Git運用ルール](#git%E9%81%8B%E7%94%A8%E3%83%AB%E3%83%BC%E3%83%AB)
+    - [ブランチ命名規則](#%E3%83%96%E3%83%A9%E3%83%B3%E3%83%81%E5%91%BD%E5%90%8D%E8%A6%8F%E5%89%87)
+    - [コミットメッセージ形式](#%E3%82%B3%E3%83%9F%E3%83%83%E3%83%88%E3%83%A1%E3%83%83%E3%82%BB%E3%83%BC%E3%82%B8%E5%BD%A2%E5%BC%8F)
 - [便利コマンド](#%E4%BE%BF%E5%88%A9%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89)
   - [npkill](#npkill)
   - [doctoc](#doctoc)
