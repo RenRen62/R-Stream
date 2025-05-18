@@ -18,6 +18,7 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
+
 - [リポジトリ構成](#%E3%83%AA%E3%83%9D%E3%82%B8%E3%83%88%E3%83%AA%E6%A7%8B%E6%88%90)
   - [@r-stream/web](#r-streamweb)
   - [@r-stream/server](#r-streamserver)
@@ -26,6 +27,15 @@
   - [pnpm のインストール](#pnpm-%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB)
   - [依存パッケージのインストール](#%E4%BE%9D%E5%AD%98%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB)
   - [サブプロジェクト(@r-stream/web)にパッケージを追加したい場合](#%E3%82%B5%E3%83%96%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88r-streamweb%E3%81%AB%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%82%92%E8%BF%BD%E5%8A%A0%E3%81%97%E3%81%9F%E3%81%84%E5%A0%B4%E5%90%88)
+- [開発ルール](#%E9%96%8B%E7%99%BA%E3%83%AB%E3%83%BC%E3%83%AB)
+  - [コードフォーマット](#%E3%82%B3%E3%83%BC%E3%83%89%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%83%E3%83%88)
+  - [TypeScript設定](#typescript%E8%A8%AD%E5%AE%9A)
+  - [ESLintルール](#eslint%E3%83%AB%E3%83%BC%E3%83%AB)
+  - [ディレクトリ構造](#%E3%83%87%E3%82%A3%E3%83%AC%E3%82%AF%E3%83%88%E3%83%AA%E6%A7%8B%E9%80%A0)
+  - [命名規則](#%E5%91%BD%E5%90%8D%E8%A6%8F%E5%89%87)
+  - [Git運用ルール](#git%E9%81%8B%E7%94%A8%E3%83%AB%E3%83%BC%E3%83%AB)
+    - [ブランチ命名規則](#%E3%83%96%E3%83%A9%E3%83%B3%E3%83%81%E5%91%BD%E5%90%8D%E8%A6%8F%E5%89%87)
+    - [コミットメッセージ形式](#%E3%82%B3%E3%83%9F%E3%83%83%E3%83%88%E3%83%A1%E3%83%83%E3%82%BB%E3%83%BC%E3%82%B8%E5%BD%A2%E5%BC%8F)
 - [便利コマンド](#%E4%BE%BF%E5%88%A9%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89)
   - [npkill](#npkill)
   - [doctoc](#doctoc)
@@ -89,6 +99,42 @@ $ pnpm i
 # プロジェクトのルートで
 $ pnpm --filter @r-stream/web i <PACKAGE_NAME>
 ```
+
+## 開発ルール
+
+
+
+### 命名規則
+- コンポーネント: PascalCase（例: `UserProfile.tsx`）
+- フック: camelCaseで`use`プレフィックス（例: `useAuth.ts`）
+- 型定義: PascalCaseで`Type`サフィックス（例: `UserType`）
+- インターフェース: PascalCaseで`I`プレフィックス（例: `IUserProps`）
+- 定数: SCREAMING_SNAKE_CASE（例: `MAX_RETRY_COUNT`）
+
+### Git運用ルール
+
+#### ブランチ命名規則
+- `feat/[内容]`     : 機能追加やドキュメント追加時
+- `hotfix/[内容]`   : バグ修正時
+
+#### コミットメッセージ形式
+```
+[プレフィックス]: [変更内容の具体的な説明]
+```
+
+プレフィックス:
+- `feat`: 新機能追加（例: "feat: ユーザー認証機能の実装"）
+- `fix`: バグ修正（例: "fix: ログイン時のバリデーションエラーを修正"）
+- `docs`: ドキュメント関連（例: "docs: プロジェクト概要をREADMEに追加"）
+- `style`: コードスタイルの変更（例: "style: インデントの修正"）
+- `refactor`: リファクタリング（例: "refactor: ユーザー処理のロジックを整理"）
+- `perf`: パフォーマンス改善（例: "perf: 画像読み込みの最適化"）
+- `test`: テスト関連（例: "test: ユーザー登録のテストケース追加"）
+- `chore`: ビルド・ツール関連（例: "chore: パッケージの更新"）
+
+コミットメッセージ例:
+❌ "docs: READMEの更新"
+⭕ "docs: プロジェクトの技術スタックと開発ルールをREADMEに追加"
 
 ## 便利コマンド
 ### npkill
