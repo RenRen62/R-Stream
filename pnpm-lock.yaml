@@ -30,6 +30,9 @@ importers:
       '@eslint/js':
         specifier: ^9.25.0
         version: 9.27.0
+      '@tsconfig/strictest':
+        specifier: ^2.0.5
+        version: 2.0.5
       '@types/react':
         specifier: ^19.1.2
         version: 19.1.4
@@ -489,6 +492,9 @@ packages:
 
   '@textlint/markdown-to-ast@12.6.1':
     resolution: {integrity: sha512-T0HO+VrU9VbLRiEx/kH4+gwGMHNMIGkp0Pok+p0I33saOOLyhfGvwOKQgvt2qkxzQEV2L5MtGB8EnW4r5d3CqQ==}
+
+  '@tsconfig/strictest@2.0.5':
+    resolution: {integrity: sha512-ec4tjL2Rr0pkZ5hww65c+EEPYwxOi4Ryv+0MtjeaSQRJyq322Q27eOQiFbuNgw2hpL4hB1/W/HBGk3VKS43osg==}
 
   '@types/babel__core@7.20.5':
     resolution: {integrity: sha512-qoQprZvz5wQFJwMDqeseRXWv3rqMvhgpbXFfVyWhbx9X47POIA6i/+dXefEmZKoAgOaTdaIgNSMqMIU61yRyzA==}
@@ -2015,6 +2021,8 @@ snapshots:
       unified: 9.2.2
     transitivePeerDependencies:
       - supports-color
+
+  '@tsconfig/strictest@2.0.5': {}
 
   '@types/babel__core@7.20.5':
     dependencies:
