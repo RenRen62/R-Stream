@@ -1,4 +1,4 @@
-name: CI/CD for Admin
+name: CI/CD for Web
 on:
   push:
     branches:
