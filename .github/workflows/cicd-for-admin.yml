@@ -1,0 +1,44 @@
+name: CI/CD for Admin
+on:
+  push:
+    branches:
+      - 'main'
+      - 'staging'
+      - 'production'
+    paths:
+      - 'apps/web/**'
+  pull_request:
+    types:
+      - 'labeled'
+    branches:
+      - 'main'
+      - 'staging'
+      - 'production'
+    paths:
+      - 'apps/web/**'
+jobs:
+  test:
+    name: Execute Test
+    if: ${{ github.event_name == 'pull_request' && github.event.action == 'labeled' && github.event.label.name == 'tested' }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+
+      - name: Setup Environment
+        uses: ./.github/actions/setup-env
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          package: '@r-stream/web'
+
+      - name: Execute jest
+        run: pnpm --filter @r-stream/web test
+
+      - name: Jest coverage comment
+        if: always()
+        uses: MishaKav/jest-coverage-comment@main
+        with:
+          coverage-summary-path: ./apps/web/coverage/coverage-summary.json
+          coverage-path: ./apps/web/coverage/coverage.txt
+          junitxml-path: ./apps/web/coverage/junit.xml

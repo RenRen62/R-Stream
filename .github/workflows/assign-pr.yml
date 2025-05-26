@@ -1,0 +1,28 @@
+name: Auto assign ans Auto Label
+
+on:
+  pull_request:
+    types: ['opened']
+
+permissions:
+  pull-requests: write
+  repository-projects: read
+
+jobs:
+  assign:
+    if: ${{ github.event.pull_request.user.login != 'dependabot[bot]' || toJSON(github.event.pull_request.assignees) == '[]' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    steps:
+      - run: gh pr edit "$PULL_NUMBER" --repo "$REPOSITORY" --add-assignee "$CREATOR"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPOSITORY: ${{ github.repository }}
+          PULL_NUMBER: ${{ github.event.pull_request.number }}
+          CREATOR: ${{ github.event.pull_request.user.login }}
+      - name: Add "bug" label if hotfix is in title or branch
+        if: contains(github.event.pull_request.head.ref, 'hotfix')
+        uses: actions-ecosystem/action-add-labels@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          labels: bug
