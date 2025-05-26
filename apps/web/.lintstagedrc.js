@@ -27,7 +27,8 @@ module.exports = {
       'tsc --noEmit',
       `prettier --write --ignore-unknown --config ./prettier.config.js ${files.join(
         ' '
-      )}`
+      )}`,
+      'secretlint "**/*"'
     ];
   }
 };
