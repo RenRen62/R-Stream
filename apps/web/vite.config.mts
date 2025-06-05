@@ -7,7 +7,6 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   plugins: [react(), TanStackRouterVite(), tailwindcss()],
   server: {
-    port: 3000, // ポート番号を固定してみた
-    host: true // ネットワークアクセスを許可してみた
+    port: 3000 // ポート番号を固定してみた
   }
 });
