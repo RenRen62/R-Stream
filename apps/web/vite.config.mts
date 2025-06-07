@@ -5,5 +5,8 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), TanStackRouterVite(), tailwindcss()]
+  plugins: [react(), TanStackRouterVite(), tailwindcss()],
+  server: {
+    port: 3000 // ポート番号を固定してみた
+  }
 });
