@@ -11,6 +11,7 @@
     "lint-staged": "lint-staged --config .lintstagedrc.js"
   },
   "dependencies": {
+    "@mui/icons-material": "^7.1.2",
     "@tailwindcss/vite": "^4.1.8",
     "@tanstack/react-router": "^1.120.11",
     "react": "^19.1.0",
