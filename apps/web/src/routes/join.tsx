@@ -1,18 +1,29 @@
-import { createFileRoute } from '@tanstack/react-router';
+import { createFileRoute, Link } from '@tanstack/react-router';
+import { memo } from 'react';
 import ViewListIcon from '@mui/icons-material/ViewList';
+import UndoIcon from '@mui/icons-material/Undo';
+
+// 戻るボタンコンポーネント（メモ化）
+const BackButton = memo(() => (
+  <Link to='/' className='common_header_button_back' title='トップページに戻る'>
+    <UndoIcon />
+  </Link>
+));
+
+BackButton.displayName = 'BackButton';
 
 const Join: React.FC = () => {
   return (
     <div className='common_background_layout'>
       {/* ヘッダーセクション */}
       <header className='common_header_layout'>
-        <button className='common_header_button_menu'>
+        <button className='common_header_button_menu' title='メニューを開く'>
           <ViewListIcon />
         </button>
 
+        <BackButton />
+
         <h1 className='common_header_text_title'>R-Streamに参加する</h1>
-        {/* 右側のスペーサー（左側のメニューアイコン分のスペースを置き、左右対称にする) */}
-        <div className='common_header_content_spacer'></div>
       </header>
 
       <main className='common_main_layout_center'>

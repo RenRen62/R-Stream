@@ -7,13 +7,11 @@ const Index: React.FC = () => {
   return (
     <div className='common_background_layout'>
       <header className='common_header_layout'>
-        <button className='common_header_button_menu'>
+        <button className='common_header_button_menu' title='メニューを開く'>
           <ViewListIcon />
         </button>
 
         <h1 className='common_header_text_title'>R-Stream</h1>
-        {/* 右側のスペーサー（左側のメニューアイコン分のスペースを置き、左右対称にする) */}
-        <div className='common_header_content_spacer'></div>
       </header>
 
       <main className='common_main_layout_column'>

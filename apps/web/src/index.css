@@ -27,11 +27,24 @@
   /* 共通ヘッダーレイアウト */
   /* bg-blue-950: 濃い青色の背景色を設定 */
   /* items-center: 縦方向の中央揃え */
-  /* justify-between: 横方向の要素を両端に配置 */
   /* px-4: 横幅を設定 */
   /* py-3: 縦幅を設定 */
+  /* relative: 絶対位置指定の基準点 */
+  /* gap-1: 子要素間の最小間隔 */
   .common_header_layout {
-    @apply flex items-center justify-between bg-blue-950 px-4 py-3;
+    @apply relative flex items-center gap-1 bg-blue-950 px-4 py-3;
+  }
+
+  /* 共通ヘッダータイトルテキスト（中央配置） */
+  /* absolute: 絶対位置指定 */
+  /* left-1/2: 左端から50%の位置 */
+  /* text-xl: フォントサイズを大きく */
+  /* font-bold: 太字 */
+  /* text-white: 白色のテキスト */
+  /* transform: translateX(-50%): 自身の幅の半分だけ左に移動（完全中央揃え） */
+  .common_header_text_title {
+    @apply absolute left-1/2 text-xl font-bold text-white;
+    transform: translateX(-50%);
   }
 
   /* 共通メイン中央配置レイアウト */
@@ -102,6 +115,92 @@
     @apply flex cursor-pointer items-center justify-center rounded-lg p-2 text-white transition-colors duration-200 hover:bg-blue-900;
   }
 
+  /* 共通ヘッダー戻るボタン */
+  /* cursor-pointer: ホバー時に指マークに変更 */
+  /* hover:bg-blue-900: ホバー時に少し明るい青色に */
+  /* transition-colors duration-200: 色の変化をスムーズに */
+  /* rounded-lg: 角を丸く */
+  /* p-2: 内側に余白を追加してホバーエリアを広げる */
+  /* flex items-center justify-center: アイコンを中央に配置 */
+  .common_header_button_back {
+    @apply flex cursor-pointer items-center justify-center rounded-lg p-2 text-white transition-colors duration-200 hover:bg-blue-900;
+  }
+
+  /* 共通ヘッダーボタングループ */
+  /* flex items-center: 横方向のFlexboxレイアウトで中央揃え */
+  /* gap-1: ボタン間の最小間隔 */
+  .common_header_button_group {
+    @apply flex items-center gap-1;
+  }
+
+  /* ツールチップスタイル */
+  /* ボタンにホバーした時のツールチップ表示 */
+  /* position: relative: ツールチップの基準位置 */
+  /* cursor: help: ヘルプカーソル表示 */
+  .common_header_button_menu,
+  .common_header_button_back {
+    @apply relative cursor-help;
+  }
+
+  /* ツールチップのホバー効果 */
+  /* hover:after: ホバー時にツールチップ表示 */
+  /* content: attr(title): title属性の内容を表示 */
+  /* position: absolute: 絶対位置指定 */
+  /* bottom: -8: 下に8px配置 */
+  /* left: 50%: 左から50%の位置 */
+  /* transform: translateX(-50%): 中央揃え */
+  /* background: 背景色 */
+  /* color: テキスト色 */
+  /* padding: 内側の余白 */
+  /* border-radius: 角を丸く */
+  /* font-size: フォントサイズ */
+  /* white-space: nowrap: 改行しない */
+  /* z-index: 重なり順 */
+  /* opacity: 透明度 */
+  /* transition: アニメーション */
+  .common_header_button_menu:hover::after,
+  .common_header_button_back:hover::after {
+    @apply absolute bottom-[-8px] left-1/2 z-50 rounded bg-gray-800 px-2 py-1 text-xs text-white opacity-100 transition-opacity duration-200;
+    content: attr(title);
+    transform: translateX(-50%);
+    white-space: nowrap;
+  }
+
+  /* ツールチップの初期状態（非表示） */
+  .common_header_button_menu::after,
+  .common_header_button_back::after {
+    @apply opacity-0;
+  }
+
+  /* 共通ヘッダーアイコンボタン（基本スタイル） */
+  /* 全てのヘッダーアイコンボタンに適用される基本スタイル */
+  /* flex: Flexboxレイアウト */
+  /* items-center justify-center: 中央揃え */
+  /* cursor-pointer: ポインターカーソル */
+  /* rounded-lg: 角を丸く */
+  /* p-2: 内側の余白 */
+  /* text-white: 白色のテキスト */
+  /* transition-colors duration-200: 色の変化をスムーズに */
+  /* hover:bg-blue-900: ホバー時に少し明るい青色に */
+  /* relative: ツールチップの基準位置 */
+  /* cursor-help: ヘルプカーソル表示 */
+  [class*='common_header_button_'] {
+    @apply relative flex cursor-help items-center justify-center rounded-lg p-2 text-white transition-colors duration-200 hover:bg-blue-900;
+  }
+
+  /* 共通ヘッダーアイコンボタンのツールチップ */
+  /* 全てのヘッダーアイコンボタンにツールチップ機能を適用 */
+  [class*='common_header_button_']:hover::after {
+    @apply absolute bottom-[-8px] left-1/2 z-50 rounded bg-gray-800 px-2 py-1 text-xs text-white opacity-100 transition-opacity duration-200;
+    content: attr(title);
+    transform: translateX(-50%);
+    white-space: nowrap;
+  }
+
+  [class*='common_header_button_']::after {
+    @apply opacity-0;
+  }
+
   /* ホームメインボタンリスト */
   /* flex flex-col: 縦方向のFlexboxレイアウト */
   /* gap-4: ボタン間の間隔 */
@@ -155,11 +254,5 @@
   /* text-gray-600: グレーのテキスト */
   .home_main_content_welcome {
     @apply mb-8 text-center text-gray-600;
-  }
-
-  /* 共通ヘッダースペーサー */
-  /* w-6: 幅を設定（左側のメニューアイコン分のスペースを置き、左右対称にする) */
-  .common_header_content_spacer {
-    @apply w-6;
   }
 }
