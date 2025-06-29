@@ -1,37 +1,59 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
-import ViewListIcon from '@mui/icons-material/ViewList';
+import { memo } from 'react';
 import AddIcon from '@mui/icons-material/Add';
 import GroupIcon from '@mui/icons-material/Group';
+import { useHeaderTexts, useHomeTexts } from '../hooks/useTexts';
+import { Header, MainContent, TextDisplay } from '../components/common/index';
+
+// ウェルカムメッセージコンポーネント（メモ化）
+const WelcomeMessage = memo(() => {
+  const homeTexts = useHomeTexts();
+
+  return (
+    <div className='home_main_content_welcome'>
+      <TextDisplay
+        text={homeTexts.WELCOME_TITLE}
+        className='home_main_text_welcome'
+      />
+      <TextDisplay text={homeTexts.WELCOME_DESCRIPTION} />
+    </div>
+  );
+});
+
+WelcomeMessage.displayName = 'WelcomeMessage';
+
+// ボタンリストコンポーネント（メモ化）
+const ButtonList = memo(() => {
+  const homeTexts = useHomeTexts();
+
+  return (
+    <div className='home_main_button_list'>
+      <Link to='/create' className='home_main_button_new-R-Stream'>
+        <AddIcon />
+        <span>{homeTexts.CREATE_BUTTON_TEXT}</span>
+      </Link>
+
+      <Link to='/join' className='home_main_button_join-R-Stream'>
+        <GroupIcon />
+        <span>{homeTexts.JOIN_BUTTON_TEXT}</span>
+      </Link>
+    </div>
+  );
+});
+
+ButtonList.displayName = 'ButtonList';
 
 const Index: React.FC = () => {
+  const headerTexts = useHeaderTexts();
+
   return (
     <div className='common_background_layout'>
-      <header className='common_header_layout'>
-        <button className='common_header_button_menu' title='メニューを開く'>
-          <ViewListIcon />
-        </button>
+      <Header title={headerTexts.APP_TITLE} />
 
-        <h1 className='common_header_text_title'>R-Stream</h1>
-      </header>
-
-      <main className='common_main_layout_column'>
-        <div className='home_main_content_welcome'>
-          <p className='home_main_text_welcome'>R-Streamへようこそ！</p>
-          <p>セッションを開始するか、既存のセッションに参加してください。</p>
-        </div>
-
-        <div className='home_main_button_list'>
-          <Link to='/create' className='home_main_button_new-R-Stream'>
-            <AddIcon />
-            <span>R-Streamを新規作成する</span>
-          </Link>
-
-          <Link to='/join' className='home_main_button_join-R-Stream'>
-            <GroupIcon />
-            <span>既存のR-Streamに参加する</span>
-          </Link>
-        </div>
-      </main>
+      <MainContent layout='column'>
+        <WelcomeMessage />
+        <ButtonList />
+      </MainContent>
     </div>
   );
 };
