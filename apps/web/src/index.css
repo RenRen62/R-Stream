@@ -1,1 +1,165 @@
 @import 'tailwindcss';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ========================================
+   R-Stream共通スタイル
+   ======================================== */
+/* 命名規則: [ページ]_[セクション]_[要素]_[補足] */
+/* ページ: common（共通）, home（ホーム）, create（作成）, join（参加）など */
+/* セクション: background（背景）, header（ヘッダー）, main（メイン）, footer（フッター）など */
+/* 要素: layout（レイアウト）, text（テキスト）, button（ボタン）, container（コンテナ）など */
+/* 補足: center-layout（中央配置）, column-layout（縦並び）, create-new-R-Stream-button（新規作成ボタン）など */
+
+@layer components {
+  /* ========================================
+     レイアウト系
+     ======================================== */
+
+  /* 共通背景レイアウトコンテナ */
+  /* min-h-screen: 画面の高さいっぱいに設定 */
+  .common_background_layout {
+    @apply min-h-screen;
+  }
+
+  /* 共通ヘッダーレイアウト */
+  /* bg-blue-950: 濃い青色の背景色を設定 */
+  /* items-center: 縦方向の中央揃え */
+  /* justify-between: 横方向の要素を両端に配置 */
+  /* px-4: 横幅を設定 */
+  /* py-3: 縦幅を設定 */
+  .common_header_layout {
+    @apply flex items-center justify-between bg-blue-950 px-4 py-3;
+  }
+
+  /* 共通メイン中央配置レイアウト */
+  /* flex-1: 残りの空間を全て使用 */
+  /* items-center: 横方向の中央揃え */
+  /* justify-center: 縦方向の中央揃え */
+  /* p-8: 内側の余白 */
+  .common_main_layout_center {
+    @apply flex flex-1 items-center justify-center p-8;
+  }
+
+  /* 共通メイン縦並びレイアウト */
+  /* flex-1: 残りの空間を全て使用 */
+  /* flex flex-col: 縦方向のFlexboxレイアウト */
+  /* items-center: 横方向の中央揃え */
+  /* justify-center: 縦方向の中央揃え */
+  /* p-8: 内側の余白 */
+  .common_main_layout_column {
+    @apply flex flex-1 flex-col items-center justify-center p-8;
+  }
+
+  /* ========================================
+     タイポグラフィ系
+     ======================================== */
+
+  /* 共通ヘッダータイトルテキスト */
+  /* text-xl: フォントサイズを大きく */
+  /* font-bold: 太字 */
+  /* text-white: 白色のテキスト */
+  .common_header_text_title {
+    @apply text-xl font-bold text-white;
+  }
+
+  /* 共通メイン見出しテキスト */
+  /* mb-4: 下マージン */
+  /* text-2xl: 大きなフォントサイズ */
+  /* font-bold: 太字 */
+  /* text-gray-800: 濃いグレーのテキスト */
+  .common_main_text_heading {
+    @apply mb-4 text-2xl font-bold text-gray-800;
+  }
+
+  /* 共通メイン説明テキスト */
+  /* text-gray-600: グレーのテキスト */
+  .common_main_text_description {
+    @apply text-gray-600;
+  }
+
+  /* ホームメインウェルカムテキスト */
+  /* mb-4: 下マージン */
+  /* text-lg: 大きめのフォントサイズ */
+  .home_main_text_welcome {
+    @apply mb-4 text-lg;
+  }
+
+  /* ========================================
+     ボタン系
+     ======================================== */
+
+  /* 共通ヘッダーメニューボタン */
+  /* cursor-pointer: ホバー時に指マークに変更 */
+  /* hover:bg-blue-900: ホバー時に少し明るい青色に */
+  /* transition-colors duration-200: 色の変化をスムーズに */
+  /* rounded-lg: 角を丸く */
+  /* p-2: 内側に余白を追加してホバーエリアを広げる */
+  /* flex items-center justify-center: アイコンを中央に配置 */
+  .common_header_button_menu {
+    @apply flex cursor-pointer items-center justify-center rounded-lg p-2 text-white transition-colors duration-200 hover:bg-blue-900;
+  }
+
+  /* ホームメインボタンリスト */
+  /* flex flex-col: 縦方向のFlexboxレイアウト */
+  /* gap-4: ボタン間の間隔 */
+  /* w-full: 幅いっぱい */
+  /* max-w-md: 最大幅を設定 */
+  .home_main_button_list {
+    @apply flex w-full max-w-md flex-col gap-4;
+  }
+
+  /* ホームメイン新規作成ボタン */
+  /* flex items-center justify-center: アイコンとテキストを中央に配置 */
+  /* gap-3: アイコンとテキストの間隔 */
+  /* rounded-lg: 角を丸く */
+  /* bg-blue-600: 青色の背景 */
+  /* px-6 py-4: 内側の余白 */
+  /* font-semibold: やや太字 */
+  /* text-white: 白色のテキスト */
+  /* transition-colors duration-200: 色の変化をスムーズに */
+  /* hover:bg-blue-700: ホバー時に少し濃い青色に */
+  .home_main_button_new-R-Stream {
+    @apply flex items-center justify-center gap-3 rounded-lg bg-blue-600 px-6 py-4 font-semibold text-white transition-colors duration-200 hover:bg-blue-700;
+  }
+
+  /* ホームメイン参加ボタン */
+  /* flex items-center justify-center: アイコンとテキストを中央に配置 */
+  /* gap-3: アイコンとテキストの間隔 */
+  /* rounded-lg: 角を丸く */
+  /* bg-gray-600: グレーの背景 */
+  /* px-6 py-4: 内側の余白 */
+  /* font-semibold: やや太字 */
+  /* text-white: 白色のテキスト */
+  /* transition-colors duration-200: 色の変化をスムーズに */
+  /* hover:bg-gray-700: ホバー時に少し濃いグレーに */
+  .home_main_button_join-R-Stream {
+    @apply flex items-center justify-center gap-3 rounded-lg bg-gray-600 px-6 py-4 font-semibold text-white transition-colors duration-200 hover:bg-gray-700;
+  }
+
+  /* ========================================
+     コンテンツ系
+     ======================================== */
+
+  /* 共通メイン中央配置コンテンツ */
+  /* text-center: テキストを中央揃え */
+  .common_main_content_center {
+    @apply text-center;
+  }
+
+  /* ホームメインウェルカムコンテナ */
+  /* mb-8: 下マージン */
+  /* text-center: テキストを中央揃え */
+  /* text-gray-600: グレーのテキスト */
+  .home_main_content_welcome {
+    @apply mb-8 text-center text-gray-600;
+  }
+
+  /* 共通ヘッダースペーサー */
+  /* w-6: 幅を設定（左側のメニューアイコン分のスペースを置き、左右対称にする) */
+  .common_header_content_spacer {
+    @apply w-6;
+  }
+}
