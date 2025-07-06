@@ -6,7 +6,7 @@ import GroupIcon from '@mui/icons-material/Group';
 const Index: React.FC = () => {
   return (
     <div className='min-h-screen'>
-      <Header>R-Stream</Header>
+      <Header title='R-Stream' />
 
       <main className='flex flex-1 flex-col items-center justify-center p-8'>
         <div className='mb-8 text-center text-gray-600'>

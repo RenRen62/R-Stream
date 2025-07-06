@@ -4,7 +4,7 @@ import { Header } from '../components';
 const Join: React.FC = () => {
   return (
     <div className='min-h-screen'>
-      <Header>R-Streamに参加する</Header>
+      <Header title='R-Streamに参加する' />
 
       <main className='flex flex-1 items-center justify-center p-8'>
         <div className='text-center'>

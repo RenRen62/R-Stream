@@ -4,7 +4,7 @@ import { Header } from '../components';
 const Create: React.FC = () => {
   return (
     <div className='min-h-screen'>
-      <Header>R-Streamを新規作成する</Header>
+      <Header title='R-Streamを新規作成する' />
 
       <main className='flex flex-1 items-center justify-center p-8'>
         <div className='text-center'>
