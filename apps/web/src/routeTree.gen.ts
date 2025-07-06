@@ -12,7 +12,6 @@
 
 import { Route as rootRoute } from './routes/__root';
 import { Route as JoinImport } from './routes/join';
-import { Route as IndexcopyImport } from './routes/index copy';
 import { Route as CreateImport } from './routes/create';
 import { Route as IndexImport } from './routes/index';
 import { Route as PublicLoginImport } from './routes/_public/login';
@@ -23,12 +22,6 @@ import { Route as AuthHomeImport } from './routes/_auth/home';
 const JoinRoute = JoinImport.update({
   id: '/join',
   path: '/join',
-  getParentRoute: () => rootRoute
-} as any);
-
-const IndexcopyRoute = IndexcopyImport.update({
-  id: '/index copy',
-  path: '/index copy',
   getParentRoute: () => rootRoute
 } as any);
 
@@ -74,13 +67,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CreateImport;
       parentRoute: typeof rootRoute;
     };
-    '/index copy': {
-      id: '/index copy';
-      path: '/index copy';
-      fullPath: '/index copy';
-      preLoaderRoute: typeof IndexcopyImport;
-      parentRoute: typeof rootRoute;
-    };
     '/join': {
       id: '/join';
       path: '/join';
@@ -110,7 +96,6 @@ declare module '@tanstack/react-router' {
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute;
   '/create': typeof CreateRoute;
-  '/index copy': typeof IndexcopyRoute;
   '/join': typeof JoinRoute;
   '/home': typeof AuthHomeRoute;
   '/login': typeof PublicLoginRoute;
@@ -119,7 +104,6 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute;
   '/create': typeof CreateRoute;
-  '/index copy': typeof IndexcopyRoute;
   '/join': typeof JoinRoute;
   '/home': typeof AuthHomeRoute;
   '/login': typeof PublicLoginRoute;
@@ -129,7 +113,6 @@ export interface FileRoutesById {
   __root__: typeof rootRoute;
   '/': typeof IndexRoute;
   '/create': typeof CreateRoute;
-  '/index copy': typeof IndexcopyRoute;
   '/join': typeof JoinRoute;
   '/_auth/home': typeof AuthHomeRoute;
   '/_public/login': typeof PublicLoginRoute;
@@ -137,24 +120,16 @@ export interface FileRoutesById {
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath;
-  fullPaths: '/' | '/create' | '/index copy' | '/join' | '/home' | '/login';
+  fullPaths: '/' | '/create' | '/join' | '/home' | '/login';
   fileRoutesByTo: FileRoutesByTo;
-  to: '/' | '/create' | '/index copy' | '/join' | '/home' | '/login';
-  id:
-    | '__root__'
-    | '/'
-    | '/create'
-    | '/index copy'
-    | '/join'
-    | '/_auth/home'
-    | '/_public/login';
+  to: '/' | '/create' | '/join' | '/home' | '/login';
+  id: '__root__' | '/' | '/create' | '/join' | '/_auth/home' | '/_public/login';
   fileRoutesById: FileRoutesById;
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute;
   CreateRoute: typeof CreateRoute;
-  IndexcopyRoute: typeof IndexcopyRoute;
   JoinRoute: typeof JoinRoute;
   AuthHomeRoute: typeof AuthHomeRoute;
   PublicLoginRoute: typeof PublicLoginRoute;
@@ -163,7 +138,6 @@ export interface RootRouteChildren {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CreateRoute: CreateRoute,
-  IndexcopyRoute: IndexcopyRoute,
   JoinRoute: JoinRoute,
   AuthHomeRoute: AuthHomeRoute,
   PublicLoginRoute: PublicLoginRoute
@@ -181,7 +155,6 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/create",
-        "/index copy",
         "/join",
         "/_auth/home",
         "/_public/login"
@@ -192,9 +165,6 @@ export const routeTree = rootRoute
     },
     "/create": {
       "filePath": "create.tsx"
-    },
-    "/index copy": {
-      "filePath": "index copy.tsx"
     },
     "/join": {
       "filePath": "join.tsx"
