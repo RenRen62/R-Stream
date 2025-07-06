@@ -1,20 +1,12 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
-import ViewListIcon from '@mui/icons-material/ViewList';
+import { Header } from '../components';
 import AddIcon from '@mui/icons-material/Add';
 import GroupIcon from '@mui/icons-material/Group';
 
 const Index: React.FC = () => {
   return (
     <div className='min-h-screen'>
-      <header className='flex items-center bg-blue-950 px-4 py-2'>
-        <button className='flex cursor-pointer items-center justify-center rounded-lg p-2 text-white transition-colors duration-200 hover:bg-blue-900'>
-          <ViewListIcon />
-        </button>
-
-        <h1 className='flex-1 text-center text-xl font-bold text-white'>
-          R-Stream
-        </h1>
-      </header>
+      <Header>R-Stream</Header>
 
       <main className='flex flex-1 flex-col items-center justify-center p-8'>
         <div className='mb-8 text-center text-gray-600'>
