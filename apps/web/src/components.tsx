@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import ViewListIcon from '@mui/icons-material/ViewList';
 
-interface HeaderProps {
+type HeaderProps = {
   title: string;
-}
+};
 
 export { Header };
 
