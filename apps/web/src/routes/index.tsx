@@ -1,18 +1,37 @@
-import { createFileRoute } from '@tanstack/react-router';
-import ViewListIcon from '@mui/icons-material/ViewList';
+import { createFileRoute, Link } from '@tanstack/react-router';
+import { Header } from '../components';
+import AddIcon from '@mui/icons-material/Add';
+import GroupIcon from '@mui/icons-material/Group';
+
 const Index: React.FC = () => {
   return (
-    /* 画面全体を覆うコンテナ
-     * min-h-screen: 画面の高さいっぱいに設定
-     */
     <div className='min-h-screen'>
-      {/* ヘッダーセクション */}
-      {/* bg-blue-950: 濃い青色の背景色を設定 */}
-      <header className='flex bg-blue-950 py-5 pl-2'>
-        <button className='text-white'>
-          <ViewListIcon />
-        </button>
-      </header>
+      <Header title='R-Stream' />
+
+      <main className='flex flex-1 flex-col items-center justify-center p-8'>
+        <div className='mb-8 text-center text-gray-600'>
+          <p className='mb-4 text-lg'>R-Streamへようこそ！</p>
+          <p>セッションを開始するか、既存のセッションに参加してください。</p>
+        </div>
+
+        <div className='flex w-full max-w-md flex-col gap-4'>
+          <Link
+            to='/create'
+            className='flex items-center justify-center gap-3 rounded-lg bg-blue-600 px-6 py-4 font-semibold text-white transition-colors duration-200 hover:bg-blue-700'
+          >
+            <AddIcon />
+            <span>R-Streamを新規作成する</span>
+          </Link>
+
+          <Link
+            to='/join'
+            className='flex items-center justify-center gap-3 rounded-lg bg-gray-600 px-6 py-4 font-semibold text-white transition-colors duration-200 hover:bg-gray-700'
+          >
+            <GroupIcon />
+            <span>既存のR-Streamに参加する</span>
+          </Link>
+        </div>
+      </main>
     </div>
   );
 };
