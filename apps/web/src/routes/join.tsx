@@ -4,7 +4,11 @@ import { Header } from '../components';
 const Join: React.FC = () => {
   return (
     <div className='min-h-screen'>
-      <Header title='R-Streamに参加する' />
+      <Header
+        title='R-Streamに参加する'
+        showBackButton={true}
+        onBackClick={() => window.history.back()}
+      />
 
       <main className='flex flex-1 items-center justify-center p-8'>
         <div className='text-center'>
