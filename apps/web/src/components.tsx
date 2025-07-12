@@ -19,26 +19,48 @@ const Header: React.FC<HeaderProps> = ({
 
   const handleMenuClick = () => setIsMenuOpen((prev: boolean) => !prev);
 
+  // 左側のボタン管理 - map関数を使用するために配列で管理、オプションの有無によって動的に調整
+  const leftButtons = [
+    {
+      // 1つ目のボタン：メニュー（常に表示）
+      icon: ViewListIcon,
+      onClick: handleMenuClick,
+      key: 'menu'
+    },
+    // 2つ目のボタン：戻るボタン（オプション）
+    ...(showBackButton
+      ? [
+          {
+            icon: ArrowBackIcon,
+            onClick: onBackClick,
+            key: 'back'
+          }
+        ]
+      : []) // 戻るボタンが不要の場合は表示しない
+    // 3つ目のボタンはここに追加できる
+  ];
+
+  // ボタン数に応じて間隔クラスを動的に決定
+  const getGapClass = (buttonCount: number) => {
+    if (buttonCount <= 1) return '';
+    if (buttonCount === 2) return 'gap-1';
+    return 'gap-2'; // 3個以上の場合
+  };
+
   return (
     <>
       <header className='flex items-center bg-blue-950 px-4 py-2'>
-        {/* 左端のアイコンまとまり */}
-        <div className='flex items-center gap-1'>
-          <button
-            className='flex cursor-pointer items-center justify-center rounded-full p-2 text-white transition-colors duration-200 hover:bg-blue-900'
-            onClick={handleMenuClick}
-          >
-            <ViewListIcon />
-          </button>
-
-          {showBackButton && (
+        {/* 左端のアイコンまとまり - 表示するアイコンの個数に応じて間隔を調整 */}
+        <div className={`flex items-center ${getGapClass(leftButtons.length)}`}>
+          {leftButtons.map(({ icon: Icon, onClick, key }) => (
             <button
-              className='items-cente flex cursor-pointer justify-center rounded-full p-2 text-white transition-colors duration-200 hover:bg-blue-900'
-              onClick={onBackClick}
+              key={key}
+              className='flex cursor-pointer items-center justify-center rounded-full p-2 text-white transition-colors duration-200 hover:bg-blue-900'
+              onClick={onClick}
             >
-              <ArrowBackIcon />
+              <Icon />
             </button>
-          )}
+          ))}
         </div>
 
         {/* 中央のタイトル */}
