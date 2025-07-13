@@ -1,5 +1,5 @@
 import { useState, memo } from 'react';
-import { useRouter, useSearch } from '@tanstack/react-router';
+import { useRouter, useCanGoBack } from '@tanstack/react-router';
 import ViewListIcon from '@mui/icons-material/ViewList';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
@@ -12,11 +12,10 @@ export { Header };
 const Header: React.FC<HeaderProps> = memo(({ title }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const router = useRouter();
-  const search = useSearch({ strict: false }) as { from?: string };
   const handleMenuClick = () => setIsMenuOpen((prev: boolean) => !prev);
 
   // 戻るボタンの表示判定(2重否定でboolean型に変換) - fromパラメータが存在する場合に表示
-  const canGoBack = !!search.from;
+  const canGoBack = useCanGoBack();
 
   // 左側のボタン管理 - map関数を使用するために配列で管理、オプションの有無によって動的に調整
   const leftButtons = [
