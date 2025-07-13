@@ -1,23 +1,22 @@
-import { useState } from 'react';
+import { useState, memo } from 'react';
+import { useRouter, useSearch } from '@tanstack/react-router';
 import ViewListIcon from '@mui/icons-material/ViewList';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 type HeaderProps = {
   title: string;
-  showBackButton?: boolean;
-  onBackClick?: () => void;
 };
 
 export { Header };
 
-const Header: React.FC<HeaderProps> = ({
-  title,
-  showBackButton = false,
-  onBackClick
-}) => {
+const Header: React.FC<HeaderProps> = memo(({ title }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+  const router = useRouter();
+  const search = useSearch({ strict: false }) as { from?: string };
   const handleMenuClick = () => setIsMenuOpen((prev: boolean) => !prev);
+
+  // 戻るボタンの表示判定(2重否定でboolean型に変換) - fromパラメータが存在する場合に表示
+  const canGoBack = !!search.from;
 
   // 左側のボタン管理 - map関数を使用するために配列で管理、オプションの有無によって動的に調整
   const leftButtons = [
@@ -28,11 +27,11 @@ const Header: React.FC<HeaderProps> = ({
       key: 'menu'
     },
     // 2つ目のボタン：戻るボタン（オプション）
-    ...(showBackButton
+    ...(canGoBack
       ? [
           {
             icon: ArrowBackIcon,
-            onClick: onBackClick,
+            onClick: () => router.history.back(),
             key: 'back'
           }
         ]
@@ -41,11 +40,8 @@ const Header: React.FC<HeaderProps> = ({
   ];
 
   // ボタン数に応じて間隔クラスを動的に決定
-  const getGapClass = (buttonCount: number) => {
-    if (buttonCount <= 1) return '';
-    if (buttonCount === 2) return 'gap-1';
-    return 'gap-2'; // 3個以上の場合
-  };
+  const getGapClass = (buttonCount: number) =>
+    buttonCount <= 1 ? '' : buttonCount === 2 ? 'gap-1' : 'gap-2';
 
   return (
     <>
@@ -81,4 +77,4 @@ const Header: React.FC<HeaderProps> = ({
       )}
     </>
   );
-};
+});
