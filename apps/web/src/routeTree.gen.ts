@@ -11,7 +11,10 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root';
+import { Route as WatchvideoImport } from './routes/watch_video';
+import { Route as PresentationImport } from './routes/presentation';
 import { Route as JoinImport } from './routes/join';
+import { Route as DiscussionImport } from './routes/discussion';
 import { Route as CreateImport } from './routes/create';
 import { Route as IndexImport } from './routes/index';
 import { Route as PublicLoginImport } from './routes/_public/login';
@@ -19,9 +22,27 @@ import { Route as AuthHomeImport } from './routes/_auth/home';
 
 // Create/Update Routes
 
+const WatchvideoRoute = WatchvideoImport.update({
+  id: '/watch_video',
+  path: '/watch_video',
+  getParentRoute: () => rootRoute
+} as any);
+
+const PresentationRoute = PresentationImport.update({
+  id: '/presentation',
+  path: '/presentation',
+  getParentRoute: () => rootRoute
+} as any);
+
 const JoinRoute = JoinImport.update({
   id: '/join',
   path: '/join',
+  getParentRoute: () => rootRoute
+} as any);
+
+const DiscussionRoute = DiscussionImport.update({
+  id: '/discussion',
+  path: '/discussion',
   getParentRoute: () => rootRoute
 } as any);
 
@@ -67,11 +88,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CreateImport;
       parentRoute: typeof rootRoute;
     };
+    '/discussion': {
+      id: '/discussion';
+      path: '/discussion';
+      fullPath: '/discussion';
+      preLoaderRoute: typeof DiscussionImport;
+      parentRoute: typeof rootRoute;
+    };
     '/join': {
       id: '/join';
       path: '/join';
       fullPath: '/join';
       preLoaderRoute: typeof JoinImport;
+      parentRoute: typeof rootRoute;
+    };
+    '/presentation': {
+      id: '/presentation';
+      path: '/presentation';
+      fullPath: '/presentation';
+      preLoaderRoute: typeof PresentationImport;
+      parentRoute: typeof rootRoute;
+    };
+    '/watch_video': {
+      id: '/watch_video';
+      path: '/watch_video';
+      fullPath: '/watch_video';
+      preLoaderRoute: typeof WatchvideoImport;
       parentRoute: typeof rootRoute;
     };
     '/_auth/home': {
@@ -96,7 +138,10 @@ declare module '@tanstack/react-router' {
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute;
   '/create': typeof CreateRoute;
+  '/discussion': typeof DiscussionRoute;
   '/join': typeof JoinRoute;
+  '/presentation': typeof PresentationRoute;
+  '/watch_video': typeof WatchvideoRoute;
   '/home': typeof AuthHomeRoute;
   '/login': typeof PublicLoginRoute;
 }
@@ -104,7 +149,10 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute;
   '/create': typeof CreateRoute;
+  '/discussion': typeof DiscussionRoute;
   '/join': typeof JoinRoute;
+  '/presentation': typeof PresentationRoute;
+  '/watch_video': typeof WatchvideoRoute;
   '/home': typeof AuthHomeRoute;
   '/login': typeof PublicLoginRoute;
 }
@@ -113,24 +161,55 @@ export interface FileRoutesById {
   __root__: typeof rootRoute;
   '/': typeof IndexRoute;
   '/create': typeof CreateRoute;
+  '/discussion': typeof DiscussionRoute;
   '/join': typeof JoinRoute;
+  '/presentation': typeof PresentationRoute;
+  '/watch_video': typeof WatchvideoRoute;
   '/_auth/home': typeof AuthHomeRoute;
   '/_public/login': typeof PublicLoginRoute;
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath;
-  fullPaths: '/' | '/create' | '/join' | '/home' | '/login';
+  fullPaths:
+    | '/'
+    | '/create'
+    | '/discussion'
+    | '/join'
+    | '/presentation'
+    | '/watch_video'
+    | '/home'
+    | '/login';
   fileRoutesByTo: FileRoutesByTo;
-  to: '/' | '/create' | '/join' | '/home' | '/login';
-  id: '__root__' | '/' | '/create' | '/join' | '/_auth/home' | '/_public/login';
+  to:
+    | '/'
+    | '/create'
+    | '/discussion'
+    | '/join'
+    | '/presentation'
+    | '/watch_video'
+    | '/home'
+    | '/login';
+  id:
+    | '__root__'
+    | '/'
+    | '/create'
+    | '/discussion'
+    | '/join'
+    | '/presentation'
+    | '/watch_video'
+    | '/_auth/home'
+    | '/_public/login';
   fileRoutesById: FileRoutesById;
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute;
   CreateRoute: typeof CreateRoute;
+  DiscussionRoute: typeof DiscussionRoute;
   JoinRoute: typeof JoinRoute;
+  PresentationRoute: typeof PresentationRoute;
+  WatchvideoRoute: typeof WatchvideoRoute;
   AuthHomeRoute: typeof AuthHomeRoute;
   PublicLoginRoute: typeof PublicLoginRoute;
 }
@@ -138,7 +217,10 @@ export interface RootRouteChildren {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CreateRoute: CreateRoute,
+  DiscussionRoute: DiscussionRoute,
   JoinRoute: JoinRoute,
+  PresentationRoute: PresentationRoute,
+  WatchvideoRoute: WatchvideoRoute,
   AuthHomeRoute: AuthHomeRoute,
   PublicLoginRoute: PublicLoginRoute
 };
@@ -155,7 +237,10 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/create",
+        "/discussion",
         "/join",
+        "/presentation",
+        "/watch_video",
         "/_auth/home",
         "/_public/login"
       ]
@@ -166,8 +251,17 @@ export const routeTree = rootRoute
     "/create": {
       "filePath": "create.tsx"
     },
+    "/discussion": {
+      "filePath": "discussion.tsx"
+    },
     "/join": {
       "filePath": "join.tsx"
+    },
+    "/presentation": {
+      "filePath": "presentation.tsx"
+    },
+    "/watch_video": {
+      "filePath": "watch_video.tsx"
     },
     "/_auth/home": {
       "filePath": "_auth/home.tsx"

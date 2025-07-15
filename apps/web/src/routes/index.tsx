@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
 import { Header } from '../components';
 import AddIcon from '@mui/icons-material/Add';
-import GroupIcon from '@mui/icons-material/Group';
+import GroupIcon from '@mui/icons-material/Groups';
 
 const Index: React.FC = () => {
   return (
@@ -11,7 +11,7 @@ const Index: React.FC = () => {
       <main className='flex flex-1 flex-col items-center justify-center p-8'>
         <div className='mb-8 text-center text-gray-600'>
           <p className='mb-4 text-lg'>R-Streamへようこそ！</p>
-          <p>セッションを開始するか、既存のセッションに参加してください。</p>
+          <p>セッションを開始するか、既存のセッションに参加してください</p>
         </div>
 
         <div className='flex w-full max-w-md flex-col gap-4'>
