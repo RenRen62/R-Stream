@@ -1,8 +1,6 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
 import { Header } from '../components';
-import PresentationIcon from '@mui/icons-material/CoPresent';
-import WatchVideoIcon from '@mui/icons-material/Duo';
-import DiscussionIcon from '@mui/icons-material/Forum';
+import { Speech, MonitorPlay, MessagesSquare } from 'lucide-react';
 
 const Create: React.FC = () => {
   return (
@@ -21,7 +19,7 @@ const Create: React.FC = () => {
             search={{ from: '/create' }}
             className='flex items-center justify-center gap-3 rounded-lg bg-blue-600 px-6 py-4 font-semibold text-white transition-colors duration-200 hover:bg-blue-700'
           >
-            <PresentationIcon />
+            <Speech />
             <span>プレゼンテーションモードを作成する</span>
           </Link>
 
@@ -30,7 +28,7 @@ const Create: React.FC = () => {
             search={{ from: '/create' }}
             className='flex items-center justify-center gap-3 rounded-lg bg-blue-600 px-6 py-4 font-semibold text-white transition-colors duration-200 hover:bg-blue-700'
           >
-            <WatchVideoIcon />
+            <MonitorPlay />
             <span>動画聴講モードを作成する</span>
           </Link>
 
@@ -39,7 +37,7 @@ const Create: React.FC = () => {
             search={{ from: '/create' }}
             className='flex items-center justify-center gap-3 rounded-lg bg-blue-600 px-6 py-4 font-semibold text-white transition-colors duration-200 hover:bg-blue-700'
           >
-            <DiscussionIcon />
+            <MessagesSquare />
             <span>ディスカッションモードを作成する</span>
           </Link>
         </div>
