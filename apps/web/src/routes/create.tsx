@@ -1,6 +1,10 @@
-import { createFileRoute, Link } from '@tanstack/react-router';
-import { Header } from '../components';
-import { Speech, MonitorPlay, MessagesSquare } from 'lucide-react';
+import { createFileRoute } from '@tanstack/react-router';
+import {
+  Header,
+  PresentationModeButton,
+  WatchVideoModeButton,
+  DiscussionModeButton
+} from '../components';
 
 const Create: React.FC = () => {
   return (
@@ -12,34 +16,10 @@ const Create: React.FC = () => {
           <p className='mb-4 text-lg'>R-Streamを新規作成する</p>
           <p>シチュエーションに応じて、下記モードを選択してね</p>
         </div>
-
-        <div className='flex w-full max-w-md flex-col gap-4'>
-          <Link
-            to='/presentation'
-            search={{ from: '/create' }}
-            className='flex items-center justify-center gap-3 rounded-lg bg-blue-600 px-6 py-4 font-semibold text-white transition-colors duration-200 hover:bg-blue-700'
-          >
-            <Speech />
-            <span>プレゼンテーションモードを作成する</span>
-          </Link>
-
-          <Link
-            to='/watch_video'
-            search={{ from: '/create' }}
-            className='flex items-center justify-center gap-3 rounded-lg bg-blue-600 px-6 py-4 font-semibold text-white transition-colors duration-200 hover:bg-blue-700'
-          >
-            <MonitorPlay />
-            <span>動画聴講モードを作成する</span>
-          </Link>
-
-          <Link
-            to='/discussion'
-            search={{ from: '/create' }}
-            className='flex items-center justify-center gap-3 rounded-lg bg-blue-600 px-6 py-4 font-semibold text-white transition-colors duration-200 hover:bg-blue-700'
-          >
-            <MessagesSquare />
-            <span>ディスカッションモードを作成する</span>
-          </Link>
+        <div className='space-y-4'>
+          <PresentationModeButton />
+          <WatchVideoModeButton />
+          <DiscussionModeButton />
         </div>
       </main>
     </div>
