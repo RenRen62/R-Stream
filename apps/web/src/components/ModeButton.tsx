@@ -1,21 +1,19 @@
 import { Link } from '@tanstack/react-router';
-import { Speech, Video, MessagesSquare } from 'lucide-react';
+import { Speech, TvMinimalPlay, MessagesSquare } from 'lucide-react';
 
 type ModeButtonProps = {
   to: string; // 遷移先パス
-  text: string; // ボタンテキスト
-  children: React.ReactNode; // アイコン
+  children: React.ReactNode; // アイコン + テキスト
 };
 
 // ボタンコンポーネント
-const ModeButton: React.FC<ModeButtonProps> = ({ to, text, children }) => {
+const ModeButton: React.FC<ModeButtonProps> = ({ to, children }) => {
   return (
     <Link
       to={to}
       className={`flex items-center justify-center gap-1 rounded-lg bg-blue-600 px-6 py-4 font-semibold text-white transition-colors duration-200 hover:bg-blue-700`}
     >
       {children}
-      <span>{text}</span>
     </Link>
   );
 };
@@ -24,22 +22,25 @@ const ModeButton: React.FC<ModeButtonProps> = ({ to, text, children }) => {
 
 // プレゼンテーションモードボタン
 export const PresentationModeButton = () => (
-  <ModeButton to='/presentation' text='プレゼンテーションモードを作成する'>
+  <ModeButton to='/presentation'>
     <Speech className='h-6 w-6 text-white' />
+    プレゼンテーションモードを作成する
   </ModeButton>
 );
 
 // 動画聴講モードボタン
 export const WatchVideoModeButton = () => (
-  <ModeButton to='/watch_video' text='動画聴講モードを作成する'>
-    <Video className='h-6 w-6 text-white' />
+  <ModeButton to='/watch_video'>
+    <TvMinimalPlay className='h-6 w-6 text-white' />
+    動画聴講モードを作成する
   </ModeButton>
 );
 
 // ディスカッションモードボタン
 export const DiscussionModeButton = () => (
-  <ModeButton to='/discussion' text='ディスカッションモードを作成する'>
+  <ModeButton to='/discussion'>
     <MessagesSquare className='h-6 w-6 text-white' />
+    ディスカッションモードを作成する
   </ModeButton>
 );
 
