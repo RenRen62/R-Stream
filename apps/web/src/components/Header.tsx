@@ -1,19 +1,10 @@
 import { useState, memo } from 'react';
 import { useRouter, useCanGoBack } from '@tanstack/react-router';
-import {
-  AlignLeft,
-  ArrowLeft,
-  Link,
-  Presentation,
-  Video,
-  MessagesSquare
-} from 'lucide-react';
+import { AlignLeft, ArrowLeft } from 'lucide-react';
 
 type HeaderProps = {
   title: string;
 };
-
-export { Header };
 
 const Header: React.FC<HeaderProps> = memo(({ title }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -84,41 +75,4 @@ const Header: React.FC<HeaderProps> = memo(({ title }) => {
   );
 });
 
-// プレゼンテーションモードボタン
-export function PresentationModeButton() {
-  return (
-    <Link
-      to='/presentation'
-      className='flex items-center gap-3 rounded-lg border p-4 transition-colors hover:bg-gray-50'
-    >
-      <Presentation className='h-6 w-6 text-blue-600' />
-      <span>プレゼンテーションモードを作成する</span>
-    </Link>
-  );
-}
-
-// 動画聴講モードボタン
-export function WatchVideoModeButton() {
-  return (
-    <Link
-      to='/watch_video'
-      className='flex items-center gap-3 rounded-lg border p-4 transition-colors hover:bg-gray-50'
-    >
-      <Video className='h-6 w-6 text-blue-600' />
-      <span>動画聴講モードを作成する</span>
-    </Link>
-  );
-}
-
-// ディスカッションモードボタン
-export function DiscussionModeButton() {
-  return (
-    <Link
-      to='/discussion'
-      className='flex items-center gap-3 rounded-lg border p-4 transition-colors hover:bg-gray-50'
-    >
-      <MessagesSquare className='h-6 w-6 text-blue-600' />
-      <span>ディスカッションモードを作成する</span>
-    </Link>
-  );
-}
+export { Header };
