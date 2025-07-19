@@ -1,27 +1,24 @@
 import { useState, memo } from 'react';
 import { useRouter, useCanGoBack } from '@tanstack/react-router';
-import ViewListIcon from '@mui/icons-material/ViewList';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { AlignLeft, ArrowLeft } from 'lucide-react';
 
 type HeaderProps = {
   title: string;
 };
-
-export { Header };
 
 const Header: React.FC<HeaderProps> = memo(({ title }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const router = useRouter();
   const handleMenuClick = () => setIsMenuOpen((prev: boolean) => !prev);
 
-  // 戻るボタンの表示判定(2重否定でboolean型に変換) - fromパラメータが存在する場合に表示
+  // 戻るボタンの表示判定
   const canGoBack = useCanGoBack();
 
   // 左側のボタン管理 - map関数を使用するために配列で管理、オプションの有無によって動的に調整
   const leftButtons = [
     {
       // 1つ目のボタン：メニュー（常に表示）
-      icon: ViewListIcon,
+      icon: AlignLeft,
       onClick: handleMenuClick,
       key: 'menu'
     },
@@ -29,7 +26,7 @@ const Header: React.FC<HeaderProps> = memo(({ title }) => {
     ...(canGoBack
       ? [
           {
-            icon: ArrowBackIcon,
+            icon: ArrowLeft,
             onClick: () => router.history.back(),
             key: 'back'
           }
@@ -77,3 +74,5 @@ const Header: React.FC<HeaderProps> = memo(({ title }) => {
     </>
   );
 });
+
+export { Header };
