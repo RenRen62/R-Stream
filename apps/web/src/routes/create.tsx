@@ -1,10 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
-import {
-  Header,
-  PresentationModeButton,
-  WatchVideoModeButton,
-  DiscussionModeButton
-} from '../components';
+import { Header, ModeButton } from '../components';
+import { Speech, TvMinimalPlay, MessagesSquare } from 'lucide-react';
 
 const Create: React.FC = () => {
   return (
@@ -16,10 +12,22 @@ const Create: React.FC = () => {
           <p className='mb-4 text-lg'>R-Streamを新規作成する</p>
           <p>シチュエーションに応じて、下記モードを選択してね</p>
         </div>
-        <div className='space-y-4'>
-          <PresentationModeButton />
-          <WatchVideoModeButton />
-          <DiscussionModeButton />
+        <div className='flex flex-col gap-4'>
+          <ModeButton
+            to='/presentation'
+            text='プレゼンテーションモードを作成する'
+            icon={<Speech className='h-6 w-6 text-white' />}
+          />
+          <ModeButton
+            to='/watch_video'
+            text='動画聴講モードを作成する'
+            icon={<TvMinimalPlay className='h-6 w-6 text-white' />}
+          />
+          <ModeButton
+            to='/discussion'
+            text='ディスカッションモードを作成する'
+            icon={<MessagesSquare className='h-6 w-6 text-white' />}
+          />
         </div>
       </main>
     </div>
