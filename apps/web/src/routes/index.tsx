@@ -13,7 +13,7 @@ const Index: React.FC = () => {
           <p>セッションを開始するか、既存のセッションに参加してください</p>
         </div>
 
-        <div className='flex w-full max-w-md flex-col gap-4'>
+        <nav className='flex w-full max-w-md flex-col gap-4'>
           <Link
             to='/create'
             search={{ from: '/' }}
@@ -31,7 +31,7 @@ const Index: React.FC = () => {
             <Users />
             <span>既存のR-Streamに参加する</span>
           </Link>
-        </div>
+        </nav>
       </main>
     </div>
   );
