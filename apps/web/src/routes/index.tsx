@@ -16,7 +16,6 @@ const Index: React.FC = () => {
         <nav className='flex w-full max-w-md flex-col gap-4'>
           <Link
             to='/create'
-            search={{ from: '/' }}
             className='flex items-center justify-center gap-3 rounded-lg bg-blue-600 px-6 py-4 font-semibold text-white transition-colors duration-200 hover:bg-blue-700'
           >
             <Plus />
@@ -25,7 +24,6 @@ const Index: React.FC = () => {
 
           <Link
             to='/join'
-            search={{ from: '/' }}
             className='flex items-center justify-center gap-3 rounded-lg bg-gray-600 px-6 py-4 font-semibold text-white transition-colors duration-200 hover:bg-gray-700'
           >
             <Users />
