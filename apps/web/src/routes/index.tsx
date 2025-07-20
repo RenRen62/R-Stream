@@ -1,7 +1,6 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
 import { Header } from '../components';
-import AddIcon from '@mui/icons-material/Add';
-import GroupIcon from '@mui/icons-material/Group';
+import { Plus, Users } from 'lucide-react';
 
 const Index: React.FC = () => {
   return (
@@ -11,16 +10,16 @@ const Index: React.FC = () => {
       <main className='flex flex-1 flex-col items-center justify-center p-8'>
         <div className='mb-8 text-center text-gray-600'>
           <p className='mb-4 text-lg'>R-Streamへようこそ！</p>
-          <p>セッションを開始するか、既存のセッションに参加してください。</p>
+          <p>セッションを開始するか、既存のセッションに参加してください</p>
         </div>
 
-        <div className='flex w-full max-w-md flex-col gap-4'>
+        <nav className='flex w-full max-w-md flex-col gap-4'>
           <Link
             to='/create'
             search={{ from: '/' }}
             className='flex items-center justify-center gap-3 rounded-lg bg-blue-600 px-6 py-4 font-semibold text-white transition-colors duration-200 hover:bg-blue-700'
           >
-            <AddIcon />
+            <Plus />
             <span>R-Streamを新規作成する</span>
           </Link>
 
@@ -29,10 +28,10 @@ const Index: React.FC = () => {
             search={{ from: '/' }}
             className='flex items-center justify-center gap-3 rounded-lg bg-gray-600 px-6 py-4 font-semibold text-white transition-colors duration-200 hover:bg-gray-700'
           >
-            <GroupIcon />
+            <Users />
             <span>既存のR-Streamに参加する</span>
           </Link>
-        </div>
+        </nav>
       </main>
     </div>
   );
