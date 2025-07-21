@@ -101,14 +101,14 @@ const WatchVideo: React.FC = () => {
             >
               <ChoiceCard
                 selected={videoPreparer === 'me'}
-                label='私がします'
+                label='私が準備します'
                 onClick={() => setVideoPreparer('me')}
                 radioId='video-preparer-me'
                 radioValue='me'
               />
               <ChoiceCard
                 selected={videoPreparer === 'other'}
-                label='別の人に用意してもらいます'
+                label='別の人に準備してもらいます'
                 onClick={() => setVideoPreparer('other')}
                 radioId='video-preparer-other'
                 radioValue='other'
