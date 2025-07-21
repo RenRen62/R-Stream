@@ -58,59 +58,63 @@ const WatchVideo: React.FC = () => {
   return (
     <div className='min-h-screen'>
       <Header title='動画聴講モードで開始する' />
-      <main className='mb-8 flex flex-col items-center p-8'>
+      <main className='mb-8 flex flex-col p-8'>
         {/* ファシリテータ選択セクション（2択ラジオ） */}
-        <div className='mb-4 rounded-lg p-4 text-center'>
-          <h2 className='text-lg font-semibold text-gray-800'>
+        <div className='mb-4 rounded-lg p-4'>
+          <h2 className='text-center text-lg font-semibold text-gray-800'>
             誰がファシリテータをする？
           </h2>
-          <RadioGroup
-            value={facilitator}
-            onValueChange={(v) => setFacilitator(v as FacilitatorChoice)}
-            className='flex justify-center gap-4'
-          >
-            <ChoiceCard
-              selected={facilitator === 'me'}
-              label='私がします'
-              onClick={() => setFacilitator('me')}
-              radioId='facilitator-me'
-              radioValue='me'
-            />
-            <ChoiceCard
-              selected={facilitator === 'other'}
-              label='別の人に依頼します'
-              onClick={() => setFacilitator('other')}
-              radioId='facilitator-other'
-              radioValue='other'
-            />
-          </RadioGroup>
+          <div className='mx-auto max-w-4xl'>
+            <RadioGroup
+              value={facilitator}
+              onValueChange={(v) => setFacilitator(v as FacilitatorChoice)}
+              className='flex gap-0 overflow-hidden rounded-lg border border-gray-300'
+            >
+              <ChoiceCard
+                selected={facilitator === 'me'}
+                label='私がします'
+                onClick={() => setFacilitator('me')}
+                radioId='facilitator-me'
+                radioValue='me'
+              />
+              <ChoiceCard
+                selected={facilitator === 'other'}
+                label='別の人に依頼します'
+                onClick={() => setFacilitator('other')}
+                radioId='facilitator-other'
+                radioValue='other'
+              />
+            </RadioGroup>
+          </div>
         </div>
 
         {/* 動画準備者選択セクション（2択ラジオ） */}
-        <div className='mb-4 rounded-lg p-4 text-center'>
-          <h2 className='text-lg font-semibold text-gray-800'>
+        <div className='mb-4 rounded-lg p-4'>
+          <h2 className='text-center text-lg font-semibold text-gray-800'>
             誰が動画を準備する？
           </h2>
-          <RadioGroup
-            value={videoPreparer}
-            onValueChange={(v) => setVideoPreparer(v as VideoPreparerChoice)}
-            className='flex justify-center gap-4'
-          >
-            <ChoiceCard
-              selected={videoPreparer === 'me'}
-              label='私がします'
-              onClick={() => setVideoPreparer('me')}
-              radioId='video-preparer-me'
-              radioValue='me'
-            />
-            <ChoiceCard
-              selected={videoPreparer === 'other'}
-              label='別の人に用意してもらいます'
-              onClick={() => setVideoPreparer('other')}
-              radioId='video-preparer-other'
-              radioValue='other'
-            />
-          </RadioGroup>
+          <div className='mx-auto max-w-4xl'>
+            <RadioGroup
+              value={videoPreparer}
+              onValueChange={(v) => setVideoPreparer(v as VideoPreparerChoice)}
+              className='flex gap-0 overflow-hidden rounded-lg border border-gray-300'
+            >
+              <ChoiceCard
+                selected={videoPreparer === 'me'}
+                label='私がします'
+                onClick={() => setVideoPreparer('me')}
+                radioId='video-preparer-me'
+                radioValue='me'
+              />
+              <ChoiceCard
+                selected={videoPreparer === 'other'}
+                label='別の人に用意してもらいます'
+                onClick={() => setVideoPreparer('other')}
+                radioId='video-preparer-other'
+                radioValue='other'
+              />
+            </RadioGroup>
+          </div>
         </div>
 
         {/* 決定ボタン（状態依存で有効/無効・テキスト切り替え） */}
