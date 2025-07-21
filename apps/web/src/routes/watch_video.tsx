@@ -1,108 +1,47 @@
 import { useState } from 'react';
 import { createFileRoute } from '@tanstack/react-router';
-import { Header } from '../components';
-
-// 選択肢の型
-type Question = '誰がファシリテータをする？' | '誰が動画を準備する？';
-type Choice =
-  | '私がします'
-  | '別の人に依頼します'
-  | '私が用意します'
-  | '別の人に用意してもらいます';
-type NextButtonText =
-  | 'ファシリテータ画面へGO！'
-  | 'リスナー画面へGO！'
-  | '選択を完了してください';
-
-// コンポーネントの型
-type ChoiceButtonProps = {
-  text: Choice;
-  isSelected: boolean;
-  onClick: () => void;
-};
-
-// 質問セクションの型
-type QuestionSectionProps = {
-  question: Question;
-  options: readonly Choice[];
-  selectedValue: Choice | null;
-  onSelect: (value: Choice) => void;
-};
+import { Header, QuestionSection } from '../components';
 
 // ボタンの状態（ファシリテータ/リスナー/未選択）
 type ButtonState = 'facilitator' | 'listener' | 'nochoice';
 
-// 選択肢ボタンコンポーネント
-const ChoiceButton: React.FC<ChoiceButtonProps> = ({
-  text,
-  isSelected,
-  onClick
-}) => (
-  <button
-    className={`flex-1 rounded-lg border-2 p-4 text-center font-medium ${
-      isSelected
-        ? 'border-blue-600 bg-blue-50 text-blue-700'
-        : 'border-gray-300 bg-white text-gray-700 hover:border-blue-400'
-    }`}
-    onClick={onClick}
-  >
-    {text}
-  </button>
-);
-
-// 質問セクションコンポーネント
-const QuestionSection: React.FC<QuestionSectionProps> = ({
-  question,
-  options,
-  selectedValue,
-  onSelect
-}) => (
-  <div className='mb-4 rounded-lg p-4 text-center'>
-    <h2 className='text-lg font-semibold text-gray-800'>{question}</h2>
-    <div className='mt-4 flex gap-4'>
-      {options.map((option) => (
-        <ChoiceButton
-          key={option}
-          text={option}
-          isSelected={selectedValue === option}
-          onClick={() => onSelect(option)}
-        />
-      ))}
-    </div>
-  </div>
-);
-
 // メインコンポーネント
 const WatchVideo: React.FC = () => {
   // 各選択肢の初期値を定義（nullは未選択を表す）
-  const [choices, setChoices] = useState({
-    facilitator: null as '私がします' | '別の人に依頼します' | null,
-    videoPreparer: null as
-      | '私が用意します'
-      | '別の人に用意してもらいます'
-      | null
-  });
+  type QuestionKey = 'facilitator' | 'videoPreparer';
+  type FacilitatorChoice = 'me' | 'other';
+  type VideoPreparerChoice = 'me' | 'other';
 
-  // 各選択肢の状態を更新
-  const handleChoice = (
-    type: 'facilitator' | 'videoPreparer',
-    choice: Choice
-  ) => {
-    setChoices((prev) => ({ ...prev, [type]: choice }));
+  const QUESTION_LABELS: Record<QuestionKey, string> = {
+    facilitator: '誰がファシリテータをする？',
+    videoPreparer: '誰が動画を準備する？'
   };
+  const FACILITATOR_OPTIONS: Record<FacilitatorChoice, string> = {
+    me: '私がします',
+    other: '別の人に依頼します'
+  };
+  const VIDEO_PREPARER_OPTIONS: Record<VideoPreparerChoice, string> = {
+    me: '私が用意します',
+    other: '別の人に用意してもらいます'
+  };
+
+  // 各選択肢の状態を管理
+  const [facilitator, setFacilitator] = useState<FacilitatorChoice | null>(
+    null
+  );
+  const [videoPreparer, setVideoPreparer] =
+    useState<VideoPreparerChoice | null>(null);
 
   // 各ボタンの状態を判定
   const getButtonState = (): ButtonState => {
     // 両方の選択が完了していない場合は未選択状態
-    if (!choices.facilitator || !choices.videoPreparer) {
-      return 'nochoice';
-    }
+    if (!facilitator || !videoPreparer) return 'nochoice';
     // ファシリテータの選択に基づいて遷移先を決定（videoPreparerは遷移先に影響しない）
-    return choices.facilitator === '私がします' ? 'facilitator' : 'listener';
+    return facilitator === 'me' ? 'facilitator' : 'listener';
   };
 
   // 各ボタンテキストの取得
-  const getButtonText = (): NextButtonText => {
+  const getButtonText = (): string => {
     const buttonState = getButtonState();
 
     switch (buttonState) {
@@ -112,6 +51,8 @@ const WatchVideo: React.FC = () => {
         return 'リスナー画面へGO！';
       case 'nochoice':
         return '選択を完了してください';
+      default:
+        return '';
     }
   };
 
@@ -136,17 +77,31 @@ const WatchVideo: React.FC = () => {
       <main className='mb-8 flex flex-col items-center p-8'>
         {/* ファシリテータ選択セクション */}
         <QuestionSection
-          question='誰がファシリテータをする？'
-          options={['私がします', '別の人に依頼します']}
-          selectedValue={choices.facilitator}
-          onSelect={(value) => handleChoice('facilitator', value)}
+          question={QUESTION_LABELS.facilitator}
+          options={Object.values(FACILITATOR_OPTIONS)}
+          selectedValue={facilitator ? FACILITATOR_OPTIONS[facilitator] : null}
+          onSelect={(value: string) =>
+            setFacilitator(
+              (Object.entries(FACILITATOR_OPTIONS).find(
+                ([, option]) => option === value
+              )?.[0] as FacilitatorChoice) || null
+            )
+          }
         />
         {/* 動画準備者選択セクション */}
         <QuestionSection
-          question='誰が動画を準備する？'
-          options={['私が用意します', '別の人に用意してもらいます']}
-          selectedValue={choices.videoPreparer}
-          onSelect={(value) => handleChoice('videoPreparer', value)}
+          question={QUESTION_LABELS.videoPreparer}
+          options={Object.values(VIDEO_PREPARER_OPTIONS)}
+          selectedValue={
+            videoPreparer ? VIDEO_PREPARER_OPTIONS[videoPreparer] : null
+          }
+          onSelect={(value: string) =>
+            setVideoPreparer(
+              Object.entries(VIDEO_PREPARER_OPTIONS).find(
+                ([, option]) => option === value
+              )?.[0] as VideoPreparerChoice | null
+            )
+          }
         />
         {/* ボタンセクション */}
         <div className='mb-8'>
