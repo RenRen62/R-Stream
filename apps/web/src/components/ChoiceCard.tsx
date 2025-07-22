@@ -4,20 +4,27 @@ type ChoiceCardProps = {
   selected: boolean;
   label: string;
   onClick: () => void;
-  radioId: string;
   radioValue: string;
+  rounded?: 'left' | 'right';
 };
 
 const ChoiceCard: React.FC<ChoiceCardProps> = ({
   selected,
   label,
   onClick,
-  radioId,
-  radioValue
+  radioValue,
+  rounded
 }) => {
+  const roundedClass =
+    rounded === 'left'
+      ? 'rounded-l-lg'
+      : rounded === 'right'
+        ? 'rounded-r-lg'
+        : '';
+
   return (
     <div
-      className={`flex-1 cursor-pointer p-4 text-center transition-colors ${
+      className={`min-w-0 flex-1 cursor-pointer p-4 text-center transition-colors ${roundedClass} ${
         selected
           ? 'bg-blue-500 text-white'
           : 'bg-white text-gray-600 hover:bg-gray-50'
@@ -32,7 +39,7 @@ const ChoiceCard: React.FC<ChoiceCardProps> = ({
         }
       }}
     >
-      <RadioGroupItem value={radioValue} id={radioId} className='sr-only' />
+      <RadioGroupItem value={radioValue} className='sr-only' />
       <span className='text-sm font-medium'>{label}</span>
     </div>
   );

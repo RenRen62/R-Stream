@@ -1,9 +1,3 @@
-// 動画聴講モードの選択画面
-// - ファシリテータ/動画準備者の2択UI
-// - 状態（facilitator, videoPreparer）→導出値（buttonState）→UI変化
-// - useMemoで状態依存の導出値を最適化・明示化
-// - 型安全性・アクセシビリティ・UI/UXに配慮
-
 import { useState, useMemo } from 'react';
 import { createFileRoute } from '@tanstack/react-router';
 import { RadioGroup } from '../components/ui/radio-group';
@@ -60,58 +54,57 @@ const WatchVideo: React.FC = () => {
       <Header title='動画聴講モードで開始する' />
       <main className='mb-8 flex flex-col p-8'>
         {/* ファシリテータ選択セクション（2択ラジオ） */}
-        <div className='mb-4 rounded-lg p-4'>
+        <div className='mb-4'>
           <h2 className='text-center text-lg font-semibold text-gray-800'>
             誰がファシリテータをする？
           </h2>
-          <div className='mx-auto max-w-4xl'>
+          <div className='mx-auto w-full max-w-4xl rounded-lg border border-gray-300 p-0'>
             <RadioGroup
               value={facilitator}
               onValueChange={(v) => setFacilitator(v as FacilitatorChoice)}
-              className='flex gap-0 overflow-hidden rounded-lg border border-gray-300'
+              className='flex w-full overflow-hidden'
             >
               <ChoiceCard
                 selected={facilitator === 'me'}
                 label='私がします'
                 onClick={() => setFacilitator('me')}
-                radioId='facilitator-me'
                 radioValue='me'
+                rounded='left'
               />
               <ChoiceCard
                 selected={facilitator === 'other'}
                 label='別の人に依頼します'
                 onClick={() => setFacilitator('other')}
-                radioId='facilitator-other'
                 radioValue='other'
+                rounded='right'
               />
             </RadioGroup>
           </div>
         </div>
 
-        {/* 動画準備者選択セクション（2択ラジオ） */}
-        <div className='mb-4 rounded-lg p-4'>
+        <div className='mb-4'>
           <h2 className='text-center text-lg font-semibold text-gray-800'>
             誰が動画を準備する？
           </h2>
-          <div className='mx-auto max-w-4xl'>
+          <div className='mx-auto w-full max-w-4xl rounded-lg border border-gray-300 p-0'>
             <RadioGroup
               value={videoPreparer}
               onValueChange={(v) => setVideoPreparer(v as VideoPreparerChoice)}
-              className='flex gap-0 overflow-hidden rounded-lg border border-gray-300'
+              className='flex w-full overflow-hidden'
             >
               <ChoiceCard
                 selected={videoPreparer === 'me'}
                 label='私が準備します'
                 onClick={() => setVideoPreparer('me')}
-                radioId='video-preparer-me'
                 radioValue='me'
+                rounded='left'
               />
               <ChoiceCard
                 selected={videoPreparer === 'other'}
                 label='別の人に準備してもらいます'
                 onClick={() => setVideoPreparer('other')}
-                radioId='video-preparer-other'
                 radioValue='other'
+                rounded='right'
               />
             </RadioGroup>
           </div>
@@ -119,7 +112,7 @@ const WatchVideo: React.FC = () => {
 
         {/* 決定ボタン（状態依存で有効/無効・テキスト切り替え） */}
         <div className='mb-8'>
-          <div className='mb-4 rounded-lg p-4'>
+          <div className='mx-auto w-full max-w-4xl rounded-lg border border-gray-300 p-0'>
             <button
               className={`w-full rounded-lg p-4 text-center font-medium ${
                 isButtonEnabled
@@ -138,7 +131,6 @@ const WatchVideo: React.FC = () => {
   );
 };
 
-// ルートの定義（@tanstack/react-router用）
 export const Route = createFileRoute('/watch_video')({
   component: WatchVideo
 });
